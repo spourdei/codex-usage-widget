@@ -15,11 +15,17 @@ run: build
 
 install: build
 	mkdir -p $(BINDIR)
+	-launchctl bootout gui/$(UID)/$(LABEL) 2>/dev/null
+	-pkill -x $(APP) 2>/dev/null
 	install -m 755 $(APP) $(BINDIR)/$(APP)
 	sed -e 's|@BINARY@|$(BINDIR)/$(APP)|g' -e 's|@LABEL@|$(LABEL)|g' \
 		launchagent.plist.template > $(AGENT)
-	-launchctl bootout gui/$(UID)/$(LABEL) 2>/dev/null
-	launchctl bootstrap gui/$(UID) $(AGENT)
+	@n=0; until launchctl bootstrap gui/$(UID) $(AGENT) 2>/dev/null; do \
+		n=$$((n+1)); \
+		if [ $$n -ge 5 ]; then echo "Could not start via launchd; starting directly."; \
+			nohup $(BINDIR)/$(APP) >/dev/null 2>&1 & break; fi; \
+		sleep 1; \
+	done
 	@echo "Installed. Widget is running and will start at login."
 
 uninstall:
