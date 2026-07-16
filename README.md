@@ -6,6 +6,7 @@ prompts you're allowed until you gotta use a reset token... or count the days ti
 
 This widget puts the number on your screen instead. Always on top, shows the remaining % and the reset date.
 
+<img width="610" height="256" alt="Screenshot 2026-07-15 at 9 42 33 PM" src="https://github.com/user-attachments/assets/c6afe9d5-c96c-4630-9211-b3c3b99c6794" />
 
 ## Setup (2 minutes)
 
