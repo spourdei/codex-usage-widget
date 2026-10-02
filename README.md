@@ -40,8 +40,7 @@ Refreshes every 5 minutes. Remembers its size and position.
 
 It launches `codex app-server` (the official JSON-RPC interface in Codex CLI)
 and calls `account/rateLimits/read`. That's it. No credential access, no
-undocumented endpoints, no analytics. The whole app is one Swift file under
-500 lines: [CodexUsage.swift](CodexUsage.swift) — read it.
+undocumented endpoints, no analytics
 
 ## For developers
 
